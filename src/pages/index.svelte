@@ -1,9 +1,17 @@
+<script lang="ts">
+  import {initNewGame} from "../db"
+  import { goto } from '@roxi/routify'
+
+  function startNewGame() {
+    initNewGame().then(gameId =>  $goto(`/bank/${gameId}`))
+  }
+</script>
 <main>
   <h1>Tombola</h1>
   <nav>
     <ul>
       <li>
-        <a href="/bank">Banco</a>
+        <button on:click={startNewGame}>Inizia una nuova partita come banco</button>
       </li>
       <li>
         <a href="/player">Giocatore</a>

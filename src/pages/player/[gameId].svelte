@@ -1,15 +1,21 @@
 <script lang="ts">
-  import Card from "../components/PlayerCard.svelte";
-  import { gameName, lastExtractedNumber } from "../store";
+  import Card from "../../components/PlayerCard.svelte";
+  import { extractedNumbers } from "../../store";
 
+  export let gameId
+
+  getExtractedNumbers(gameId).then((data) => extractedNumbers.set(data.extractedNumbers))
+
+
+  const lastExtractedNumber = extractedNumbers[extractedNumbers.length - 1]
   const numberOfCards = 5
   const cards = new Array(numberOfCards)
 </script>
 
 <main>
-  <h1>PLayer - Partita {$gameName}</h1>
-  {#if $lastExtractedNumber}
-    <p>ultimo numero estratto: {$lastExtractedNumber}</p>
+  <h1>Player - Partita {gameId}</h1>
+  {#if lastExtractedNumber}
+    <p>ultimo numero estratto: {lastExtractedNumber}</p>
   {/if}
   <ul>
     {#each cards as card}

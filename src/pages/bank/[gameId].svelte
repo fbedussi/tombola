@@ -1,8 +1,12 @@
 <script lang="ts">
-  import Card from "../components/BankCard.svelte";
-  import { gameName, lastExtractedNumber } from "../store";
+  import Card from "../../components/BankCard.svelte";
+  import { extractedNumbers } from "../../store";
+  import { writeLastNumber, getExtractedNumbers } from "../../db";
+ 
+  export let gameId
 
-  let extractedNumbers: number[] = [];
+  getExtractedNumbers(gameId).then((data) => extractedNumbers.set(data.extractedNumbers))
+
   const bankCards = new Array(90)
     .fill(0)
     .map((_, i) => i)
@@ -17,25 +21,28 @@
     }, []);
 
   function extractNumber() {
-    lastExtractedNumber.set(0);
+    let lastExtractedNumber;
     do {
-      lastExtractedNumber.set(Math.round(Math.random() * 90));
-    } while (extractedNumbers.includes($lastExtractedNumber));
-    extractedNumbers = extractedNumbers.concat($lastExtractedNumber);
+      lastExtractedNumber = Math.round(Math.random() * 90);
+    } while ($extractedNumbers.includes(lastExtractedNumber));
+    writeLastNumber(gameId, lastExtractedNumber)
+    extractedNumbers.set($extractedNumbers.concat(lastExtractedNumber));
   }
+
+  const lastExtractedNumber = $extractedNumbers[$extractedNumbers.length - 1]
 </script>
 
 <main>
-  <h1>Banco - Partita {$gameName}</h1>
+  <h1>Banco - Partita {gameId}</h1>
   <button on:click={extractNumber}>estrai numero</button>
-  {#if $lastExtractedNumber}
-    <p>ultimo numero estratto: {$lastExtractedNumber}</p>
+  {#if lastExtractedNumber}
+    <p>ultimo numero estratto: {lastExtractedNumber}</p>
   {/if}
   <ul>
     {#each bankCards as bankCard}
       <Card
         cellNumbers={bankCard}
-        extractedNumbers={extractedNumbers.filter((number) =>
+        extractedNumbers={$extractedNumbers.filter((number) =>
           bankCard.includes(number)
         )}
       />
