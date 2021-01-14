@@ -2,7 +2,8 @@
   import Card from "../components/PlayerCard.svelte";
   import { gameName, lastExtractedNumber } from "../store";
 
-  const cards = [[2, 4, 9, 34]];
+  const numberOfCards = 5
+  const cards = new Array(numberOfCards)
 </script>
 
 <main>
@@ -12,7 +13,7 @@
   {/if}
   <ul>
     {#each cards as card}
-      <Card cellNumbers={card} />
+      <Card/>
     {/each}
   </ul>
 </main>
