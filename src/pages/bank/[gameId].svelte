@@ -28,46 +28,48 @@
     writeLastNumber(gameId, lastExtractedNumber)
     extractedNumbers.set($extractedNumbers.concat(lastExtractedNumber));
   }
-
-  const lastExtractedNumber = $extractedNumbers[$extractedNumbers.length - 1]
 </script>
 
-<main>
-  <h1>Banco - Partita {gameId}</h1>
-  <button on:click={extractNumber}>estrai numero</button>
-  {#if lastExtractedNumber}
-    <p>ultimo numero estratto: {lastExtractedNumber}</p>
+
+<header class="header">
+  <h1 class="pageTitle">Banco</h1>
+  {#if $extractedNumbers[$extractedNumbers.length - 1]}
+    <div class="number">{$extractedNumbers[$extractedNumbers.length - 1]}</div>
   {/if}
-  <ul>
+  <button class="btn" on:click={extractNumber}>estrai numero</button>
+</header>
+<main class="main">
+  <ul class="cards">
     {#each bankCards as bankCard}
-      <Card
-        cellNumbers={bankCard}
-        extractedNumbers={$extractedNumbers.filter((number) =>
-          bankCard.includes(number)
-        )}
-      />
+      <li>
+        <Card
+          cellNumbers={bankCard}
+          extractedNumbers={$extractedNumbers.filter((number) =>
+            bankCard.includes(number)
+          )}
+        />
+      </li>
     {/each}
   </ul>
 </main>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+  .header {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+
+  .header .number {
+    place-self: center center;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  .btn {
+    background-color: transparent;
+    border: 3px solid white;
+    place-self: center right;
+  }
+
+  .cards {
+    grid-template-columns: repeat( auto-fit, minmax(23rem, 1fr) );
   }
 </style>

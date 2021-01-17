@@ -9,24 +9,17 @@
   }, []);
 </script>
 
-<main>
-  <li>
-    <table>
-      {#each rows as row}
-        <tr>
-          {#each row as cell}
-            <td class={extractedNumbers.includes(cell) ? "extracted" : ""}>
-              {cell}
-            </td>
-          {/each}
-        </tr>
+<table class="card">
+  {#each rows as row}
+    <tr>
+      {#each row as cell}
+        <td>
+          <div class:extracted={extractedNumbers.includes(cell)} class="number">{cell}</div>
+        </td>
       {/each}
-    </table>
-  </li>
-</main>
+    </tr>
+  {/each}
+</table>
 
 <style>
-  .extracted {
-    color: red;
-  }
 </style>

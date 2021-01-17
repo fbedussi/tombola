@@ -1,63 +1,119 @@
-html, body {
-	position: relative;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+
+html,
+body {
 	width: 100%;
 	height: 100%;
 }
 
 body {
-	color: #333;
-	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: sans-serif;
 }
 
-a {
-	color: rgb(0,100,200);
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:visited {
-	color: rgb(0,80,160);
-}
-
-label {
-	display: block;
-}
-
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
-}
-
-input:disabled {
-	color: #ccc;
+ul,
+li {
+	list-style-type: none;
 }
 
 button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
+	font: inherit;
+	background-color: transparent;
+	border: none;
+	appearance: none;
+} 
+
+:root {
+	--color-main: #ffcb01;
+	--color-secondary: #ff3e00;
+	--border-radius: 0.5rem;
+	--border-thickness: 1px;
 }
 
-button:disabled {
-	color: #999;
+input {
+	padding: 1rem;
+	border: var(--border-thickness) solid lightgrey;
+	background-color: inherit;
+	border-radius: var(--border-radius);
+	font: inherit;
 }
 
-button:not(:disabled):active {
-	background-color: #ddd;
+.btn {
+	background-color: var(--color-main);
+	padding: 1rem 2rem;
+	color: white;
+	border-radius: var(--border-radius);
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
-button:focus {
-	border-color: #666;
+.header {
+	background-color: darksalmon;
+	border-radius: 0 0 5px 5px;
+	display: grid;
+	width: 100%;
+	justify-content: space-between;
+	padding: 1.5rem 2rem;
+	margin-bottom: 3rem;
+}
+
+.header .pageTitle {
+	place-self: center left;
+}
+
+.lastNumber {
+	padding-bottom: 2rem;
+	text-align: center;
+	background-color: teal;
+	color: white;
+	border-radius: 4rem;
+	padding: 1.25rem 0.5rem;
+	width: 5rem;
+	height: 5rem;
+	font-size: 3rem;
+	place-self: center center;
+}
+
+.pageTitle {
+	color: white;
+	text-align: center;
+}
+
+.cards {
+	display: grid;
+	gap: 2rem;
+}
+
+.cards li {
+	display: flex;
+	justify-content: center;
+}
+
+.card {
+	background-color: teal;
+	border-radius: 1em;
+	padding: 1em;
+	border-collapse: separate;
+	border-spacing: 0.5rem;
+}
+
+.number {
+	border-radius: 2em;
+	width: 2.5em;
+	height: 2.5em;
+	color: grey;
+	background-color: white;
+	padding: 1.1rem 1rem 0.9rem;
+	font-size: 1.5rem;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.extracted {
+	background-color: grey;
+	color: white;
 }
