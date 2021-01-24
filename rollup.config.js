@@ -36,6 +36,8 @@ function serve() {
 	}
 }
 
+const dotEnv = config().parsed
+
 export default {
 	input: 'src/main.ts',
 	output: {
@@ -44,7 +46,6 @@ export default {
 		inlineDynamicImports: true,
 		name: 'app',
 		file: 'public/build/bundle.js',
-		external: ['__myapp'],
 	},
 	plugins: [
 		svelte({
@@ -90,7 +91,8 @@ export default {
 			__myapp: JSON.stringify({
 				env: {
 					isProd: production,
-					...config().parsed, // attached the .env config
+					...dotEnv, // attached the .env config
+					APP_URL: production ? dotEnv.PROD_APP_URL : dotEnv.DEV_APP_URL
 				},
 			}),
 		}),

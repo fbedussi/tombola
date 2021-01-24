@@ -1,7 +1,1 @@
-export {}
-
-declare global {
-	interface __myapp {
-		env: any
-	}
-}
+declare const __myapp: any

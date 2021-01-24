@@ -25,7 +25,7 @@ button {
 	background-color: transparent;
 	border: none;
 	appearance: none;
-} 
+}
 
 :root {
 	--color-main: #ffcb01;
@@ -110,7 +110,9 @@ input {
 	padding: 1.1rem 1rem 0.9rem;
 	font-size: 1.5rem;
 	text-align: center;
-	vertical-align: middle;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .extracted {

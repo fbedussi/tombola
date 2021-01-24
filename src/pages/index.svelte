@@ -14,7 +14,7 @@
     ev.preventDefault();
     createNewPlayer(gameId, numberOfCards).then(playerId =>  {
       debugger
-      $goto(`/player/${playerId}/game/${gameId}`)
+      $goto(`/player/${gameId}/id/${playerId}`)
     })
   }
 
